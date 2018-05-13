@@ -1,6 +1,7 @@
 import ply.lex as lex
 import ply.yacc as yacc
 import sys
+from pathlib import Path
 
 # Create a list to hold all of the token names
 tokens = [
@@ -110,8 +111,6 @@ precedence = (
 # Define our grammar. We allow expressions, var_assign's and empty's.
 
 
-
-
 def p_gooooooooooo(p):
     '''
     run : expression
@@ -130,10 +129,10 @@ def p_var_assign(p):
 # Expressions are recursive.
 def p_expression(p):
     '''
-    expression : expression MULTIPLY expression
-               | expression DIVIDE expression
-               | expression PLUS expression
-               | expression MINUS expression
+    expression : expression MULTIPLY expression SEMICOLON
+               | expression DIVIDE expression SEMICOLON
+               | expression PLUS expression SEMICOLON
+               | expression MINUS expression SEMICOLON
     '''
     # Build our tree.
     print((p[2], p[1], p[3]))
@@ -161,7 +160,7 @@ def p_draw(p):
 
 def p_for(p):
     '''
-    expression : FOR OPEN expression CLOSE
+    expression : FOR OPEN_P expression CLOSE_P OPEN expression CLOSE
     '''
     p[0] = ('FOR', p[2])
 
@@ -191,7 +190,8 @@ def run(p):
     global env
     if type(p) == tuple:
         if p[0] == '+':
-            return run(p[1]) + run(p[2])
+            compiled_lines.append('{}+{}'.format(p[1],p[2]))
+            return #run(p[1]) + run(p[2])
         elif p[0] == '-':
             return run(p[1]) - run(p[2])
         elif p[0] == '*':
@@ -216,9 +216,37 @@ def run(p):
         return p
 
 # Create a REPL to provide a way to interface with our calculator.
-while True:
-    try:
-        s = input('')
-    except EOFError:
-        break
-    parser.parse(s)
+# while True:
+#     try:
+#         s = input('')
+#     except EOFError:
+#         break
+#     parser.parse(s)
+
+
+p = Path('program.x')
+lines = p.read_text().splitlines()
+compiled_lines = []
+
+for line in lines:
+    parser.parse(line)
+
+with open('program.py', 'a') as the_file:
+    if not compiled_lines:
+        print("error")
+    else:
+        first_lines ="""
+from tkinter import *
+master = Tk()
+w = Canvas(master, width=1280, height=720)
+w.pack()
+
+w.create_line(0, 0, 1280, 720)
+"""
+        compiled_lines.insert(0, first_lines)
+
+        compiled_lines.append("master.mainloop()")
+
+        for line in compiled_lines:
+            the_file.write(line+'\n')
+
