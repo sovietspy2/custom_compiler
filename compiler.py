@@ -135,8 +135,8 @@ def p_expression(p):
                | expression MINUS expression SEMICOLON
     '''
     # Build our tree.
-    print((p[2], p[1], p[3]))
-    p[0] = (p[2], p[1], p[3])
+    #print((p[2], p[1], p[3]))
+    p[0] = ('PLUS', p[1], p[3])
 
 def p_expression_int_float(p):
     '''
@@ -213,8 +213,10 @@ def run(p):
             compiled_lines.append("w.create_line({}, {}, {}, {})".format(p[1],p[2],p[3],p[4]))
         elif p[0] == 'FOR':
             compiled_lines.append("for i in range(0,{}): \n".format(p[1]))
-            if (p[2][0] == 'PRINT'):
+            if p[2][0] == 'PRINT':
                 compiled_lines.append('\tprint(\'{}\')'.format(p[1]))
+            elif  p[2][0] == 'DRAW':
+                compiled_lines.append("\tw.create_line({}, {}, {}, {})".format(p[2][1],p[2][2],p[2][3],p[2][4]))
             else:
                 compiled_lines.append("\t {}".format(p[2][1]))
                 print('TEST: ',p[1])
