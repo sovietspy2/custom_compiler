@@ -11,7 +11,7 @@ def lex(filecontents):
         tok += char
         if tok == " ":
             tok=""
-        elif tok==""
+        #elif tok==""
 
 def run():
     data = open_file(argv[1])
