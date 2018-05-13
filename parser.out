@@ -1,0 +1,708 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CLOSE_P
+    OPEN_P
+    Q_MARK
+
+Grammar
+
+Rule 0     S' -> run
+Rule 1     run -> expression
+Rule 2     run -> var_assign
+Rule 3     run -> empty
+Rule 4     var_assign -> NAME EQUALS expression SEMICOLON
+Rule 5     expression -> expression MULTIPLY expression
+Rule 6     expression -> expression DIVIDE expression
+Rule 7     expression -> expression PLUS expression
+Rule 8     expression -> expression MINUS expression
+Rule 9     expression -> INT
+Rule 10    expression -> FLOAT
+Rule 11    expression -> STRING
+Rule 12    expression -> NAME
+Rule 13    expression -> DRAW expression expression
+Rule 14    expression -> FOR OPEN expression CLOSE
+Rule 15    expression -> PRINT expression SEMICOLON
+Rule 16    empty -> <empty>
+
+Terminals, with rules where they appear
+
+CLOSE                : 14
+CLOSE_P              : 
+DIVIDE               : 6
+DRAW                 : 13
+EQUALS               : 4
+FLOAT                : 10
+FOR                  : 14
+INT                  : 9
+MINUS                : 8
+MULTIPLY             : 5
+NAME                 : 4 12
+OPEN                 : 14
+OPEN_P               : 
+PLUS                 : 7
+PRINT                : 15
+Q_MARK               : 
+SEMICOLON            : 4 15
+STRING               : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+empty                : 3
+expression           : 1 4 5 5 6 6 7 7 8 8 13 13 14 15
+run                  : 0
+var_assign           : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . run
+    (1) run -> . expression
+    (2) run -> . var_assign
+    (3) run -> . empty
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+    (4) var_assign -> . NAME EQUALS expression SEMICOLON
+    (16) empty -> .
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 8
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+    $end            reduce using rule 16 (empty -> .)
+
+    run                            shift and go to state 1
+    expression                     shift and go to state 2
+    var_assign                     shift and go to state 3
+    empty                          shift and go to state 4
+
+state 1
+
+    (0) S' -> run .
+
+
+
+state 2
+
+    (1) run -> expression .
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    $end            reduce using rule 1 (run -> expression .)
+    MULTIPLY        shift and go to state 12
+    DIVIDE          shift and go to state 13
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+
+
+state 3
+
+    (2) run -> var_assign .
+
+    $end            reduce using rule 2 (run -> var_assign .)
+
+
+state 4
+
+    (3) run -> empty .
+
+    $end            reduce using rule 3 (run -> empty .)
+
+
+state 5
+
+    (9) expression -> INT .
+
+    MULTIPLY        reduce using rule 9 (expression -> INT .)
+    DIVIDE          reduce using rule 9 (expression -> INT .)
+    PLUS            reduce using rule 9 (expression -> INT .)
+    MINUS           reduce using rule 9 (expression -> INT .)
+    $end            reduce using rule 9 (expression -> INT .)
+    INT             reduce using rule 9 (expression -> INT .)
+    FLOAT           reduce using rule 9 (expression -> INT .)
+    STRING          reduce using rule 9 (expression -> INT .)
+    NAME            reduce using rule 9 (expression -> INT .)
+    DRAW            reduce using rule 9 (expression -> INT .)
+    FOR             reduce using rule 9 (expression -> INT .)
+    PRINT           reduce using rule 9 (expression -> INT .)
+    SEMICOLON       reduce using rule 9 (expression -> INT .)
+    CLOSE           reduce using rule 9 (expression -> INT .)
+
+
+state 6
+
+    (10) expression -> FLOAT .
+
+    MULTIPLY        reduce using rule 10 (expression -> FLOAT .)
+    DIVIDE          reduce using rule 10 (expression -> FLOAT .)
+    PLUS            reduce using rule 10 (expression -> FLOAT .)
+    MINUS           reduce using rule 10 (expression -> FLOAT .)
+    $end            reduce using rule 10 (expression -> FLOAT .)
+    INT             reduce using rule 10 (expression -> FLOAT .)
+    FLOAT           reduce using rule 10 (expression -> FLOAT .)
+    STRING          reduce using rule 10 (expression -> FLOAT .)
+    NAME            reduce using rule 10 (expression -> FLOAT .)
+    DRAW            reduce using rule 10 (expression -> FLOAT .)
+    FOR             reduce using rule 10 (expression -> FLOAT .)
+    PRINT           reduce using rule 10 (expression -> FLOAT .)
+    SEMICOLON       reduce using rule 10 (expression -> FLOAT .)
+    CLOSE           reduce using rule 10 (expression -> FLOAT .)
+
+
+state 7
+
+    (11) expression -> STRING .
+
+    MULTIPLY        reduce using rule 11 (expression -> STRING .)
+    DIVIDE          reduce using rule 11 (expression -> STRING .)
+    PLUS            reduce using rule 11 (expression -> STRING .)
+    MINUS           reduce using rule 11 (expression -> STRING .)
+    $end            reduce using rule 11 (expression -> STRING .)
+    INT             reduce using rule 11 (expression -> STRING .)
+    FLOAT           reduce using rule 11 (expression -> STRING .)
+    STRING          reduce using rule 11 (expression -> STRING .)
+    NAME            reduce using rule 11 (expression -> STRING .)
+    DRAW            reduce using rule 11 (expression -> STRING .)
+    FOR             reduce using rule 11 (expression -> STRING .)
+    PRINT           reduce using rule 11 (expression -> STRING .)
+    SEMICOLON       reduce using rule 11 (expression -> STRING .)
+    CLOSE           reduce using rule 11 (expression -> STRING .)
+
+
+state 8
+
+    (12) expression -> NAME .
+    (4) var_assign -> NAME . EQUALS expression SEMICOLON
+
+    MULTIPLY        reduce using rule 12 (expression -> NAME .)
+    DIVIDE          reduce using rule 12 (expression -> NAME .)
+    PLUS            reduce using rule 12 (expression -> NAME .)
+    MINUS           reduce using rule 12 (expression -> NAME .)
+    $end            reduce using rule 12 (expression -> NAME .)
+    EQUALS          shift and go to state 16
+
+
+state 9
+
+    (13) expression -> DRAW . expression expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 17
+
+state 10
+
+    (14) expression -> FOR . OPEN expression CLOSE
+
+    OPEN            shift and go to state 19
+
+
+state 11
+
+    (15) expression -> PRINT . expression SEMICOLON
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 20
+
+state 12
+
+    (5) expression -> expression MULTIPLY . expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 21
+
+state 13
+
+    (6) expression -> expression DIVIDE . expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 22
+
+state 14
+
+    (7) expression -> expression PLUS . expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 23
+
+state 15
+
+    (8) expression -> expression MINUS . expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 24
+
+state 16
+
+    (4) var_assign -> NAME EQUALS . expression SEMICOLON
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 25
+
+state 17
+
+    (13) expression -> DRAW expression . expression
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    MULTIPLY        shift and go to state 12
+    DIVIDE          shift and go to state 13
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 26
+
+state 18
+
+    (12) expression -> NAME .
+
+    MULTIPLY        reduce using rule 12 (expression -> NAME .)
+    DIVIDE          reduce using rule 12 (expression -> NAME .)
+    PLUS            reduce using rule 12 (expression -> NAME .)
+    MINUS           reduce using rule 12 (expression -> NAME .)
+    INT             reduce using rule 12 (expression -> NAME .)
+    FLOAT           reduce using rule 12 (expression -> NAME .)
+    STRING          reduce using rule 12 (expression -> NAME .)
+    NAME            reduce using rule 12 (expression -> NAME .)
+    DRAW            reduce using rule 12 (expression -> NAME .)
+    FOR             reduce using rule 12 (expression -> NAME .)
+    PRINT           reduce using rule 12 (expression -> NAME .)
+    SEMICOLON       reduce using rule 12 (expression -> NAME .)
+    $end            reduce using rule 12 (expression -> NAME .)
+    CLOSE           reduce using rule 12 (expression -> NAME .)
+
+
+state 19
+
+    (14) expression -> FOR OPEN . expression CLOSE
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . expression DIVIDE expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . STRING
+    (12) expression -> . NAME
+    (13) expression -> . DRAW expression expression
+    (14) expression -> . FOR OPEN expression CLOSE
+    (15) expression -> . PRINT expression SEMICOLON
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    STRING          shift and go to state 7
+    NAME            shift and go to state 18
+    DRAW            shift and go to state 9
+    FOR             shift and go to state 10
+    PRINT           shift and go to state 11
+
+    expression                     shift and go to state 27
+
+state 20
+
+    (15) expression -> PRINT expression . SEMICOLON
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    SEMICOLON       shift and go to state 28
+    MULTIPLY        shift and go to state 12
+    DIVIDE          shift and go to state 13
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+
+
+state 21
+
+    (5) expression -> expression MULTIPLY expression .
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    MULTIPLY        reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    DIVIDE          reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    PLUS            reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    MINUS           reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    $end            reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    INT             reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    FLOAT           reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    STRING          reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    NAME            reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    DRAW            reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    FOR             reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    PRINT           reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    SEMICOLON       reduce using rule 5 (expression -> expression MULTIPLY expression .)
+    CLOSE           reduce using rule 5 (expression -> expression MULTIPLY expression .)
+
+  ! MULTIPLY        [ shift and go to state 12 ]
+  ! DIVIDE          [ shift and go to state 13 ]
+  ! PLUS            [ shift and go to state 14 ]
+  ! MINUS           [ shift and go to state 15 ]
+
+
+state 22
+
+    (6) expression -> expression DIVIDE expression .
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    MULTIPLY        reduce using rule 6 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 6 (expression -> expression DIVIDE expression .)
+    PLUS            reduce using rule 6 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 6 (expression -> expression DIVIDE expression .)
+    $end            reduce using rule 6 (expression -> expression DIVIDE expression .)
+    INT             reduce using rule 6 (expression -> expression DIVIDE expression .)
+    FLOAT           reduce using rule 6 (expression -> expression DIVIDE expression .)
+    STRING          reduce using rule 6 (expression -> expression DIVIDE expression .)
+    NAME            reduce using rule 6 (expression -> expression DIVIDE expression .)
+    DRAW            reduce using rule 6 (expression -> expression DIVIDE expression .)
+    FOR             reduce using rule 6 (expression -> expression DIVIDE expression .)
+    PRINT           reduce using rule 6 (expression -> expression DIVIDE expression .)
+    SEMICOLON       reduce using rule 6 (expression -> expression DIVIDE expression .)
+    CLOSE           reduce using rule 6 (expression -> expression DIVIDE expression .)
+
+  ! MULTIPLY        [ shift and go to state 12 ]
+  ! DIVIDE          [ shift and go to state 13 ]
+  ! PLUS            [ shift and go to state 14 ]
+  ! MINUS           [ shift and go to state 15 ]
+
+
+state 23
+
+    (7) expression -> expression PLUS expression .
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    PLUS            reduce using rule 7 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 7 (expression -> expression PLUS expression .)
+    $end            reduce using rule 7 (expression -> expression PLUS expression .)
+    INT             reduce using rule 7 (expression -> expression PLUS expression .)
+    FLOAT           reduce using rule 7 (expression -> expression PLUS expression .)
+    STRING          reduce using rule 7 (expression -> expression PLUS expression .)
+    NAME            reduce using rule 7 (expression -> expression PLUS expression .)
+    DRAW            reduce using rule 7 (expression -> expression PLUS expression .)
+    FOR             reduce using rule 7 (expression -> expression PLUS expression .)
+    PRINT           reduce using rule 7 (expression -> expression PLUS expression .)
+    SEMICOLON       reduce using rule 7 (expression -> expression PLUS expression .)
+    CLOSE           reduce using rule 7 (expression -> expression PLUS expression .)
+    MULTIPLY        shift and go to state 12
+    DIVIDE          shift and go to state 13
+
+  ! MULTIPLY        [ reduce using rule 7 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 7 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 14 ]
+  ! MINUS           [ shift and go to state 15 ]
+
+
+state 24
+
+    (8) expression -> expression MINUS expression .
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    PLUS            reduce using rule 8 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 8 (expression -> expression MINUS expression .)
+    $end            reduce using rule 8 (expression -> expression MINUS expression .)
+    INT             reduce using rule 8 (expression -> expression MINUS expression .)
+    FLOAT           reduce using rule 8 (expression -> expression MINUS expression .)
+    STRING          reduce using rule 8 (expression -> expression MINUS expression .)
+    NAME            reduce using rule 8 (expression -> expression MINUS expression .)
+    DRAW            reduce using rule 8 (expression -> expression MINUS expression .)
+    FOR             reduce using rule 8 (expression -> expression MINUS expression .)
+    PRINT           reduce using rule 8 (expression -> expression MINUS expression .)
+    SEMICOLON       reduce using rule 8 (expression -> expression MINUS expression .)
+    CLOSE           reduce using rule 8 (expression -> expression MINUS expression .)
+    MULTIPLY        shift and go to state 12
+    DIVIDE          shift and go to state 13
+
+  ! MULTIPLY        [ reduce using rule 8 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 8 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 14 ]
+  ! MINUS           [ shift and go to state 15 ]
+
+
+state 25
+
+    (4) var_assign -> NAME EQUALS expression . SEMICOLON
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    SEMICOLON       shift and go to state 29
+    MULTIPLY        shift and go to state 12
+    DIVIDE          shift and go to state 13
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+
+
+state 26
+
+    (13) expression -> DRAW expression expression .
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+  ! shift/reduce conflict for MULTIPLY resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+    $end            reduce using rule 13 (expression -> DRAW expression expression .)
+    INT             reduce using rule 13 (expression -> DRAW expression expression .)
+    FLOAT           reduce using rule 13 (expression -> DRAW expression expression .)
+    STRING          reduce using rule 13 (expression -> DRAW expression expression .)
+    NAME            reduce using rule 13 (expression -> DRAW expression expression .)
+    DRAW            reduce using rule 13 (expression -> DRAW expression expression .)
+    FOR             reduce using rule 13 (expression -> DRAW expression expression .)
+    PRINT           reduce using rule 13 (expression -> DRAW expression expression .)
+    SEMICOLON       reduce using rule 13 (expression -> DRAW expression expression .)
+    CLOSE           reduce using rule 13 (expression -> DRAW expression expression .)
+    MULTIPLY        shift and go to state 12
+    DIVIDE          shift and go to state 13
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+
+  ! MULTIPLY        [ reduce using rule 13 (expression -> DRAW expression expression .) ]
+  ! DIVIDE          [ reduce using rule 13 (expression -> DRAW expression expression .) ]
+  ! PLUS            [ reduce using rule 13 (expression -> DRAW expression expression .) ]
+  ! MINUS           [ reduce using rule 13 (expression -> DRAW expression expression .) ]
+
+
+state 27
+
+    (14) expression -> FOR OPEN expression . CLOSE
+    (5) expression -> expression . MULTIPLY expression
+    (6) expression -> expression . DIVIDE expression
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    CLOSE           shift and go to state 30
+    MULTIPLY        shift and go to state 12
+    DIVIDE          shift and go to state 13
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+
+
+state 28
+
+    (15) expression -> PRINT expression SEMICOLON .
+
+    MULTIPLY        reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    DIVIDE          reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    PLUS            reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    MINUS           reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    $end            reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    INT             reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    FLOAT           reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    STRING          reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    NAME            reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    DRAW            reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    FOR             reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    PRINT           reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    SEMICOLON       reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+    CLOSE           reduce using rule 15 (expression -> PRINT expression SEMICOLON .)
+
+
+state 29
+
+    (4) var_assign -> NAME EQUALS expression SEMICOLON .
+
+    $end            reduce using rule 4 (var_assign -> NAME EQUALS expression SEMICOLON .)
+
+
+state 30
+
+    (14) expression -> FOR OPEN expression CLOSE .
+
+    MULTIPLY        reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    DIVIDE          reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    PLUS            reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    MINUS           reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    $end            reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    INT             reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    FLOAT           reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    STRING          reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    NAME            reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    DRAW            reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    FOR             reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    PRINT           reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    SEMICOLON       reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+    CLOSE           reduce using rule 14 (expression -> FOR OPEN expression CLOSE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MULTIPLY in state 26 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 26 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 26 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 26 resolved as shift
