@@ -7,6 +7,7 @@ w.pack()
 
 w.create_line(0, 0, 1280, 720)
 
-w.create_line(0, 0, 700, 720)
-w.pack()
+widget = Label(w, text='Spam', fg='white', bg='black')
+w.create_window(1000, 100, window=widget)
 master.mainloop()
+

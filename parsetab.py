@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftMULTIPLYDIVIDECLOSE CLOSE_P DIVIDE DRAW EQUALS FLOAT FOR INT MINUS MULTIPLY NAME OPEN OPEN_P PLUS PRINT Q_MARK SEMICOLON STRING\n    run : expression\n         | var_assign\n         | empty\n    \n    var_assign : NAME EQUALS expression SEMICOLON\n    \n    expression : expression MULTIPLY expression\n               | expression DIVIDE expression\n               | expression PLUS expression\n               | expression MINUS expression\n    \n    expression : INT\n               | FLOAT\n               | STRING\n    \n    expression : NAME\n    \n    expression : DRAW expression expression\n    \n    expression : FOR OPEN expression CLOSE\n    \n    expression : PRINT expression SEMICOLON\n    \n    empty :\n    '
+_lr_signature = 'leftPLUSMINUSleftMULTIPLYDIVIDECLOSE CLOSE_P DIVIDE DRAW EQUALS FLOAT FOR INT MINUS MULTIPLY NAME OPEN OPEN_P PLUS PRINT Q_MARK SEMICOLON STRING\n    run : expression\n         | var_assign\n         | empty\n    \n    var_assign : NAME EQUALS expression SEMICOLON\n    \n    expression : expression MULTIPLY expression SEMICOLON\n               | expression DIVIDE expression SEMICOLON\n               | expression PLUS expression SEMICOLON\n               | expression MINUS expression SEMICOLON\n    \n    expression : INT\n               | FLOAT\n               | STRING\n    \n    expression : NAME\n    \n    expression : DRAW OPEN_P expression expression expression expression CLOSE_P SEMICOLON\n    \n    expression : FOR OPEN_P expression CLOSE_P OPEN expression CLOSE\n    \n    expression : PRINT expression SEMICOLON\n    \n    empty :\n    '
     
-_lr_action_items = {'INT':([0,5,6,7,9,11,12,13,14,15,16,17,18,19,21,22,23,24,26,28,30,],[5,-9,-10,-11,5,5,5,5,5,5,5,5,-12,5,-5,-6,-7,-8,-13,-15,-14,]),'FLOAT':([0,5,6,7,9,11,12,13,14,15,16,17,18,19,21,22,23,24,26,28,30,],[6,-9,-10,-11,6,6,6,6,6,6,6,6,-12,6,-5,-6,-7,-8,-13,-15,-14,]),'STRING':([0,5,6,7,9,11,12,13,14,15,16,17,18,19,21,22,23,24,26,28,30,],[7,-9,-10,-11,7,7,7,7,7,7,7,7,-12,7,-5,-6,-7,-8,-13,-15,-14,]),'NAME':([0,5,6,7,9,11,12,13,14,15,16,17,18,19,21,22,23,24,26,28,30,],[8,-9,-10,-11,18,18,18,18,18,18,18,18,-12,18,-5,-6,-7,-8,-13,-15,-14,]),'DRAW':([0,5,6,7,9,11,12,13,14,15,16,17,18,19,21,22,23,24,26,28,30,],[9,-9,-10,-11,9,9,9,9,9,9,9,9,-12,9,-5,-6,-7,-8,-13,-15,-14,]),'FOR':([0,5,6,7,9,11,12,13,14,15,16,17,18,19,21,22,23,24,26,28,30,],[10,-9,-10,-11,10,10,10,10,10,10,10,10,-12,10,-5,-6,-7,-8,-13,-15,-14,]),'PRINT':([0,5,6,7,9,11,12,13,14,15,16,17,18,19,21,22,23,24,26,28,30,],[11,-9,-10,-11,11,11,11,11,11,11,11,11,-12,11,-5,-6,-7,-8,-13,-15,-14,]),'$end':([0,1,2,3,4,5,6,7,8,18,21,22,23,24,26,28,29,30,],[-16,0,-1,-2,-3,-9,-10,-11,-12,-12,-5,-6,-7,-8,-13,-15,-4,-14,]),'MULTIPLY':([2,5,6,7,8,17,18,20,21,22,23,24,25,26,27,28,30,],[12,-9,-10,-11,-12,12,-12,12,-5,-6,12,12,12,12,12,-15,-14,]),'DIVIDE':([2,5,6,7,8,17,18,20,21,22,23,24,25,26,27,28,30,],[13,-9,-10,-11,-12,13,-12,13,-5,-6,13,13,13,13,13,-15,-14,]),'PLUS':([2,5,6,7,8,17,18,20,21,22,23,24,25,26,27,28,30,],[14,-9,-10,-11,-12,14,-12,14,-5,-6,-7,-8,14,14,14,-15,-14,]),'MINUS':([2,5,6,7,8,17,18,20,21,22,23,24,25,26,27,28,30,],[15,-9,-10,-11,-12,15,-12,15,-5,-6,-7,-8,15,15,15,-15,-14,]),'SEMICOLON':([5,6,7,18,20,21,22,23,24,25,26,28,30,],[-9,-10,-11,-12,28,-5,-6,-7,-8,29,-13,-15,-14,]),'CLOSE':([5,6,7,18,21,22,23,24,26,27,28,30,],[-9,-10,-11,-12,-5,-6,-7,-8,-13,30,-15,-14,]),'EQUALS':([8,],[16,]),'OPEN':([10,],[19,]),}
+_lr_action_items = {'INT':([0,5,6,7,11,12,13,14,15,16,17,18,20,26,28,29,30,31,32,34,36,37,41,42,],[5,-9,-10,-11,5,5,5,5,5,5,5,5,-12,5,-15,-5,-6,-7,-8,5,5,5,-14,-13,]),'FLOAT':([0,5,6,7,11,12,13,14,15,16,17,18,20,26,28,29,30,31,32,34,36,37,41,42,],[6,-9,-10,-11,6,6,6,6,6,6,6,6,-12,6,-15,-5,-6,-7,-8,6,6,6,-14,-13,]),'STRING':([0,5,6,7,11,12,13,14,15,16,17,18,20,26,28,29,30,31,32,34,36,37,41,42,],[7,-9,-10,-11,7,7,7,7,7,7,7,7,-12,7,-15,-5,-6,-7,-8,7,7,7,-14,-13,]),'NAME':([0,5,6,7,11,12,13,14,15,16,17,18,20,26,28,29,30,31,32,34,36,37,41,42,],[8,-9,-10,-11,20,20,20,20,20,20,20,20,-12,20,-15,-5,-6,-7,-8,20,20,20,-14,-13,]),'DRAW':([0,5,6,7,11,12,13,14,15,16,17,18,20,26,28,29,30,31,32,34,36,37,41,42,],[9,-9,-10,-11,9,9,9,9,9,9,9,9,-12,9,-15,-5,-6,-7,-8,9,9,9,-14,-13,]),'FOR':([0,5,6,7,11,12,13,14,15,16,17,18,20,26,28,29,30,31,32,34,36,37,41,42,],[10,-9,-10,-11,10,10,10,10,10,10,10,10,-12,10,-15,-5,-6,-7,-8,10,10,10,-14,-13,]),'PRINT':([0,5,6,7,11,12,13,14,15,16,17,18,20,26,28,29,30,31,32,34,36,37,41,42,],[11,-9,-10,-11,11,11,11,11,11,11,11,11,-12,11,-15,-5,-6,-7,-8,11,11,11,-14,-13,]),'$end':([0,1,2,3,4,5,6,7,8,28,29,30,31,32,33,41,42,],[-16,0,-1,-2,-3,-9,-10,-11,-12,-15,-5,-6,-7,-8,-4,-14,-13,]),'MULTIPLY':([2,5,6,7,8,19,20,21,22,23,24,25,26,27,28,29,30,31,32,34,36,38,39,41,42,],[12,-9,-10,-11,-12,12,-12,12,12,12,12,12,12,12,-15,-5,-6,-7,-8,12,12,12,12,-14,-13,]),'DIVIDE':([2,5,6,7,8,19,20,21,22,23,24,25,26,27,28,29,30,31,32,34,36,38,39,41,42,],[13,-9,-10,-11,-12,13,-12,13,13,13,13,13,13,13,-15,-5,-6,-7,-8,13,13,13,13,-14,-13,]),'PLUS':([2,5,6,7,8,19,20,21,22,23,24,25,26,27,28,29,30,31,32,34,36,38,39,41,42,],[14,-9,-10,-11,-12,14,-12,14,14,14,14,14,14,14,-15,-5,-6,-7,-8,14,14,14,14,-14,-13,]),'MINUS':([2,5,6,7,8,19,20,21,22,23,24,25,26,27,28,29,30,31,32,34,36,38,39,41,42,],[15,-9,-10,-11,-12,15,-12,15,15,15,15,15,15,15,-15,-5,-6,-7,-8,15,15,15,15,-14,-13,]),'SEMICOLON':([5,6,7,19,20,21,22,23,24,25,28,29,30,31,32,40,41,42,],[-9,-10,-11,28,-12,29,30,31,32,33,-15,-5,-6,-7,-8,42,-14,-13,]),'CLOSE_P':([5,6,7,20,27,28,29,30,31,32,38,41,42,],[-9,-10,-11,-12,35,-15,-5,-6,-7,-8,40,-14,-13,]),'CLOSE':([5,6,7,20,28,29,30,31,32,39,41,42,],[-9,-10,-11,-12,-15,-5,-6,-7,-8,41,-14,-13,]),'EQUALS':([8,],[16,]),'OPEN_P':([9,10,],[17,18,]),'OPEN':([35,],[37,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'run':([0,],[1,]),'expression':([0,9,11,12,13,14,15,16,17,19,],[2,17,20,21,22,23,24,25,26,27,]),'var_assign':([0,],[3,]),'empty':([0,],[4,]),}
+_lr_goto_items = {'run':([0,],[1,]),'expression':([0,11,12,13,14,15,16,17,18,26,34,36,37,],[2,19,21,22,23,24,25,26,27,34,36,38,39,]),'var_assign':([0,],[3,]),'empty':([0,],[4,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,20 +27,20 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> run","S'",1,None,None,None),
-  ('run -> expression','run',1,'p_test','compiler.py',117),
-  ('run -> var_assign','run',1,'p_test','compiler.py',118),
-  ('run -> empty','run',1,'p_test','compiler.py',119),
-  ('var_assign -> NAME EQUALS expression SEMICOLON','var_assign',4,'p_var_assign','compiler.py',125),
-  ('expression -> expression MULTIPLY expression','expression',3,'p_expression','compiler.py',133),
-  ('expression -> expression DIVIDE expression','expression',3,'p_expression','compiler.py',134),
-  ('expression -> expression PLUS expression','expression',3,'p_expression','compiler.py',135),
-  ('expression -> expression MINUS expression','expression',3,'p_expression','compiler.py',136),
-  ('expression -> INT','expression',1,'p_expression_int_float','compiler.py',144),
-  ('expression -> FLOAT','expression',1,'p_expression_int_float','compiler.py',145),
-  ('expression -> STRING','expression',1,'p_expression_int_float','compiler.py',146),
-  ('expression -> NAME','expression',1,'p_expression_var','compiler.py',152),
-  ('expression -> DRAW expression expression','expression',3,'p_draw','compiler.py',158),
-  ('expression -> FOR OPEN expression CLOSE','expression',4,'p_for','compiler.py',164),
-  ('expression -> PRINT expression SEMICOLON','expression',3,'p_print','compiler.py',170),
-  ('empty -> <empty>','empty',0,'p_empty','compiler.py',181),
+  ('run -> expression','run',1,'p_gooooooooooo','compiler.py',116),
+  ('run -> var_assign','run',1,'p_gooooooooooo','compiler.py',117),
+  ('run -> empty','run',1,'p_gooooooooooo','compiler.py',118),
+  ('var_assign -> NAME EQUALS expression SEMICOLON','var_assign',4,'p_var_assign','compiler.py',124),
+  ('expression -> expression MULTIPLY expression SEMICOLON','expression',4,'p_expression','compiler.py',132),
+  ('expression -> expression DIVIDE expression SEMICOLON','expression',4,'p_expression','compiler.py',133),
+  ('expression -> expression PLUS expression SEMICOLON','expression',4,'p_expression','compiler.py',134),
+  ('expression -> expression MINUS expression SEMICOLON','expression',4,'p_expression','compiler.py',135),
+  ('expression -> INT','expression',1,'p_expression_int_float','compiler.py',143),
+  ('expression -> FLOAT','expression',1,'p_expression_int_float','compiler.py',144),
+  ('expression -> STRING','expression',1,'p_expression_int_float','compiler.py',145),
+  ('expression -> NAME','expression',1,'p_expression_var','compiler.py',151),
+  ('expression -> DRAW OPEN_P expression expression expression expression CLOSE_P SEMICOLON','expression',8,'p_draw','compiler.py',157),
+  ('expression -> FOR OPEN_P expression CLOSE_P OPEN expression CLOSE','expression',7,'p_for','compiler.py',163),
+  ('expression -> PRINT expression SEMICOLON','expression',3,'p_print','compiler.py',169),
+  ('empty -> <empty>','empty',0,'p_empty','compiler.py',180),
 ]
