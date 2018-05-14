@@ -129,6 +129,7 @@ def p_var_assign2(p):
     '''
     var_assign : NAME EQUALS expression SEMICOLON var_assign
                | NAME EQUALS expression SEMICOLON expression
+               | NAME EQUALS expression expression
     '''
     # Build our tree
     p[0] = ('=', p[1], p[3], p[5])
@@ -141,6 +142,7 @@ def p_var_assign(p):
     p[0] = ('=', p[1], p[3], None)
 
 # Expressions are recursive.
+
 def p_expression(p):
     '''
     expression : expression MULTIPLY expression SEMICOLON
@@ -150,7 +152,7 @@ def p_expression(p):
     '''
     # Build our tree.
     #print((p[2], p[1], p[3]))
-    p[0] = ('PLUS', p[1], p[3])
+    p[0] = (p[2], p[1], p[3])
 
 
 def p_expression_int_float(p):
@@ -175,17 +177,17 @@ def p_draw(p): # X1 Y1 X2 Y2
 
 def p_for2(p):
     '''
-    expression : FOR OPEN_P expression CLOSE_P OPEN var_assign CLOSE expression
-               | FOR OPEN_P expression CLOSE_P OPEN expression CLOSE expression
-               | FOR OPEN_P expression CLOSE_P OPEN expression CLOSE var_assign
-               | FOR OPEN_P expression CLOSE_P OPEN var_assign CLOSE var_assign
+    expression : FOR OPEN_P INT CLOSE_P OPEN var_assign CLOSE expression
+               | FOR OPEN_P INT CLOSE_P OPEN expression CLOSE expression
+               | FOR OPEN_P INT CLOSE_P OPEN expression CLOSE var_assign
+               | FOR OPEN_P INT CLOSE_P OPEN var_assign CLOSE var_assign
     '''
     p[0] = ('FOR', p[3], p[6], p[8])
 
 def p_for(p):
     '''
-    expression : FOR OPEN_P expression CLOSE_P OPEN var_assign CLOSE
-               | FOR OPEN_P expression CLOSE_P OPEN expression CLOSE
+    expression : FOR OPEN_P INT CLOSE_P OPEN var_assign CLOSE
+               | FOR OPEN_P INT CLOSE_P OPEN expression CLOSE
     '''
     p[0] = ('FOR', p[3], p[6], None)
 
@@ -233,11 +235,12 @@ def run(p):
     line = ""
     global tab_holder
     if type(p) == tuple:
-        if p[0] == 'PLUS':
+        if p[0] == '+':
             if switch is True:
                 line = tab_holder;
             line += '{}+{}'.format(p[1],p[2])
             compiled_lines.append(line) # NOT FIXED
+            run(p[1])
             #return run(p[1]) + run(p[2])
         elif p[0] == '-':
             return run(p[1]) - run(p[2])
