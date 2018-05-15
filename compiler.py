@@ -29,7 +29,8 @@ tokens = [
     'EQUALEQUAL',
     'LESS',
     'MORE',
-    'ELSE'
+    'ELSE',
+    'INPUT'
 
 ]
 
@@ -51,7 +52,7 @@ t_Q_MARK = r"\""
 
 t_LESS = r'\<'
 t_MORE = r'\>'
-
+t_INPUT = r'INPUT'
 #t_PRINT = "PRINT"
 
 # Ply's special t_ignore variable allows us to define characters the lexer will ignore.
@@ -61,6 +62,11 @@ t_ignore = ' \n'
 # More complicated tokens, such as tokens that are more than 1 character in length
 # are defined using functions.
 # A float is 1 or more numbers followed by a dot (.) followed by 1 or more numbers again.
+
+# def t_INPUT(t):
+#     "INPUT"
+#     t.type = "INPUT"
+#     return t
 
 def t_ELSE(t):
     "ELSE"
@@ -162,6 +168,7 @@ def p_var_assign2(p):
 def p_var_assign(p):
     '''
     var_assign : NAME EQUALS expression SEMICOLON
+    var_assign : NAME EQUALS INPUT SEMICOLON
     '''
     # Build our tree
     p[0] = ('=', p[1], p[3], None)
@@ -353,8 +360,10 @@ def run(p):
             run(p[3]) #_type_of_literal(),
             return ''
         elif p[0] == 'VAR':
+            if p[1] == 'INPUT':
+                return 'input(\'>>\')'
             if p[1] not in env:
-                return 'Undeclared variable found!'
+                raise NameError('Undeclared variable found!')
             else:
                 return env[p[1]]
         elif p[0] == 'DRAW':
