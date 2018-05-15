@@ -2,6 +2,7 @@ import ply.lex as lex
 import ply.yacc as yacc
 import sys
 from pathlib import Path
+import re
 
 # Create a list to hold all of the token names
 tokens = [
@@ -325,11 +326,16 @@ def run(p):
                 if inline is False:
                     compiled_lines.append(helper_string)
                 else:
-                    if (helper_string[0] == '\t' or '\t' in helper_string)and one_less_tab_in_cycle is True:  # Néha plusz tab bekerült ehhez új változó kellett
-                        helper_string = helper_string[1:]
-                    return_value = helper_string
+
+                    if one_less_tab_in_cycle is True:  # Néha plusz tab bekerült ehhez új változó kellett
+                        return_value = re.sub('\t', '' ,helper_string)
+
                     helper_string = ""
                     return return_value
+
+                return_value = helper_string
+                helper_string = ''
+                return return_value
 
             #return run(p[1]) + run(p[2])
         elif p[0] == '=':
@@ -344,7 +350,7 @@ def run(p):
 
             compiled_lines.append(line)
             #line = ""
-            run(p[3])
+            run(p[3]) #_type_of_literal(),
             return ''
         elif p[0] == 'VAR':
             if p[1] not in env:
@@ -427,6 +433,8 @@ def run(p):
                 run(p[4])
                 tab_holder = tab_holder[:-1]
                 switch = False
+            else:
+                run(p[3])
             switch = False
     else:
         return p

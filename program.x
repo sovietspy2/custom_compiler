@@ -21,6 +21,17 @@
 //PRINT 500;
 //}
 
-FOR (10) {
-    x = 10+1;+1;;
+
+IF (1>1) {
+    PRINT "HELLO";
+} ELSE {
+    PRINT "SZAR";
+    IF (10==10) {
+        PRINT 10;
+    } ELSE {
+        PRINT "HEOHOW";
+        FOR (10) {
+            PRINT "LEXLUTOR";
+           }
+    }
 }
