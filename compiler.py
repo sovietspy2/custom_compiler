@@ -247,9 +247,24 @@ def p_if_way2(p):
     '''
     expression : IF OPEN_P condition CLOSE_P OPEN expression CLOSE expression
     '''
-    p[0] = (p[1], p[3], p[6], p[8])
+    p[0] = (p[1], p[3], p[6], p[8], None, None)
 
+def p_if_way_else(p):
+    '''
+    expression : IF OPEN_P condition CLOSE_P OPEN expression CLOSE ELSE OPEN expression CLOSE
+    '''
+    p[0] = (p[1], p[3], p[6], p[8], p[10], None)
 
+def p_if_way_else_plus_expression(p):
+    '''
+    expression : IF OPEN_P condition CLOSE_P OPEN expression CLOSE ELSE OPEN expression CLOSE expression
+    '''
+    p[0] = (p[1], p[3], p[6], p[8], p[10], p[12])
+
+# def p_else(p):
+#     '''
+#     expression :
+#     '''
 
 
 # Output to the user that there is an error in the input as it doesn't conform to our grammar.
@@ -366,6 +381,7 @@ def run(p):
         elif p[0] in ('IF'):
 
             if switch is True:
+
                 line = tab_holder;
 
             inline = True
@@ -379,10 +395,20 @@ def run(p):
             tab_holder += '\t'
             run(p[2])
             tab_holder = tab_holder[:-1]
-            switch = False
 
-            if p[3] is not None:
-                run(p[3])
+            if p[3] == 'ELSE':
+                line = ''
+                if switch is True:
+                    line = tab_holder;
+
+                line += 'else:'
+                compiled_lines.append(line)
+                switch = True
+                tab_holder += '\t'
+                run(p[4])
+                tab_holder = tab_holder[:-1]
+                switch = False
+            switch = False
     else:
         return p
 
