@@ -22,16 +22,23 @@
 //}
 
 
-IF (1>1) {
-    PRINT "HELLO";
-} ELSE {
-    PRINT "SZAR";
-    IF (10==10) {
-        PRINT 10;
-    } ELSE {
-        PRINT "HEOHOW";
-        FOR (10) {
-            PRINT "LEXLUTOR";
-           }
-    }
+//IF (1>1) {
+//    PRINT "HELLO";
+//} ELSE {
+//    PRINT "SZAR";
+//    IF (10==10) {
+//        PRINT 10;
+//    } ELSE {
+//        PRINT "HEOHOW";
+ //       FOR (10) {
+ //           PRINT "LEXLUTOR";
+ //          }
+//        z = INPUT;
+ //       x = 10;
+ //   }
+//}
+
+IF (10>3) {
+    x = INPUT;
 }
+PRINT x;
