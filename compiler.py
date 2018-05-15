@@ -286,9 +286,10 @@ def run(p):
             switch = True
             tab_holder += "\t"
             run(p[2])
-            switch = False
-            tab_holder = ""
+
+            tab_holder = tab_holder[:-1]
             run(p[3])
+            switch = False
 
         elif p[0] == 'PRINT':
             var = p[1]
