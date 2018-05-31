@@ -38,7 +38,12 @@
  //   }
 //}
 
-IF (10>3) {
-    x = INPUT;
+//IF (10>3) {
+//    x = INPUT;
+//}
+//PRINT x;
+
+X = 10;
+FOR ( 2 ) {
+    PRINT i;
 }
-PRINT x;

@@ -143,7 +143,7 @@ precedence = (
 # Define our grammar. We allow expressions, var_assign's and empty's.
 
 
-def p_gooooooooooo(p):
+def p_start(p): # Itt kezdődik
     '''
     run : expression
          | var_assign
@@ -156,7 +156,7 @@ def p_gooooooooooo(p):
 
 
 
-def p_var_assign2(p):
+def p_var_assign2(p): #
     '''
     var_assign : NAME EQUALS expression SEMICOLON var_assign
                | NAME EQUALS expression SEMICOLON expression
@@ -175,7 +175,7 @@ def p_var_assign(p):
 
 # Expressions are recursive.
 
-def p_expression(p):
+def p_expression(p): # + - / * operators
     '''
     expression : expression MULTIPLY expression SEMICOLON
                | expression DIVIDE expression SEMICOLON
@@ -304,7 +304,7 @@ parser = yacc.yacc()
 env = {}
 identifier = 0
 switch = False
-tab_holder = "";
+tab_holder = ""
 helper_string = ""
 inline = False
 one_less_tab_in_cycle = False
@@ -347,7 +347,7 @@ def run(p):
             #return run(p[1]) + run(p[2])
         elif p[0] == '=':
             if switch is True:
-                line = tab_holder;
+                line = tab_holder
             inline = True
             one_less_tab_in_cycle = True
             env[p[1]] = run(p[2])
@@ -363,7 +363,10 @@ def run(p):
             if p[1] == 'INPUT':
                 return 'input(\'>>\')'
             if p[1] not in env:
-                raise NameError('Undeclared variable found!')
+                # if p[1] == 'i' and switch is True:
+                #     return env[p[1]]
+                # else:
+                    raise NameError('Undeclared variable found!')
             else:
                 return env[p[1]]
         elif p[0] == 'DRAW':
@@ -372,8 +375,10 @@ def run(p):
 
         elif p[0] == 'FOR': ##############################################FOR
             if switch is True:
-                line = tab_holder;
+                line = tab_holder
             line += "for i in range(0,{}): \n".format(p[1])
+            if 'i' not in env.values():
+                env['i'] = ' '
             compiled_lines.append(line)
             switch = True
             tab_holder += "\t"
@@ -409,7 +414,7 @@ def run(p):
         elif p[0] in ('<', '==', '>'):
 
             if switch is True:
-                line = tab_holder;
+                line = tab_holder
 
             if inline is True:
                 return '{} {} {}'.format(p[1],p[0],p[2])
@@ -418,7 +423,7 @@ def run(p):
         elif p[0] in ('IF'):
 
             if switch is True:
-                line = tab_holder;
+                line = tab_holder
 
             inline = True
             line += 'if ({}):'.format(run(p[1]))
